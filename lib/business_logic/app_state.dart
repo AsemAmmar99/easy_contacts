@@ -5,3 +5,13 @@ abstract class AppState {}
 class AppInitial extends AppState {}
 
 class AppChangeBottomNavBarState extends AppState {}
+
+class AppChangeBottomSheetState extends AppState {}
+
+class AppOpenDatabaseState extends AppState {}
+
+class AppGetContactsLoadingState extends AppState {}
+
+class AppGetContactsDoneState extends AppState {}
+
+class AppInsertContactsDoneState extends AppState {}

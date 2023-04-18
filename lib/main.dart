@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppCubit(),
+      create: (context) => AppCubit()..createDatabase(),
       child: Sizer(
         builder: (context, orientation, deviceType) {
           return MaterialApp(
