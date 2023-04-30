@@ -33,8 +33,8 @@ class _HomeLayoutState extends State<HomeLayout> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
-      listener: (context, state){
-        if(state is AppInsertContactsDoneState){
+      listener: (context, state) {
+        if (state is AppInsertContactsDoneState) {
           Navigator.pop(context);
         }
       },
@@ -53,23 +53,29 @@ class _HomeLayoutState extends State<HomeLayout> {
               textSize: 20.sp,
             ),
           ),
-          body: Stack(children: [
-            Container(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                begin: AlignmentDirectional.topStart,
-                end: AlignmentDirectional.bottomEnd,
-                colors: [skyBlue, lightSkyBlue, skyBlue],
-              )),
-            ),
-            cubit.screens[cubit.currentIndex],
-          ]),
+          body: BlocBuilder<AppCubit, AppState>(
+            builder: (context, state) {
+              return Stack(children: [
+                Container(
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                    begin: AlignmentDirectional.topStart,
+                    end: AlignmentDirectional.bottomEnd,
+                    colors: [skyBlue, lightSkyBlue, skyBlue],
+                  )),
+                ),
+                cubit.screens[cubit.currentIndex],
+              ]);
+            },
+          ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () async{
+            onPressed: () async {
               if (cubit.isBottomSheetShown) {
-                if(_formKey.currentState!.validate()) {
-                  await cubit.insertAccount(name: nameController.text,
-                      phoneNumber: '${myCountryCode.dialCode}${phoneController.text}');
+                if (_formKey.currentState!.validate()) {
+                  await cubit.insertContact(
+                      name: nameController.text,
+                      phoneNumber:
+                          '${myCountryCode.dialCode}${phoneController.text}');
                   nameController.text = '';
                   phoneController.text = '';
                 }
@@ -78,11 +84,11 @@ class _HomeLayoutState extends State<HomeLayout> {
                     isShown: true, icon: Icons.add_box_outlined);
                 _scaffoldKey.currentState!
                     .showBottomSheet(
-                      (context) =>
-                          Wrap(children: [
+                      (context) => Wrap(children: [
                         Container(
                           color: darkSkyBlue,
-                          padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 3.w),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 2.h, horizontal: 3.w),
                           child: Form(
                             key: _formKey,
                             child: Column(
@@ -101,12 +107,13 @@ class _HomeLayoutState extends State<HomeLayout> {
                                       return null;
                                     },
                                     textColor: white,
-                                    prefixIcon: const Icon(Icons.title_outlined),
+                                    prefixIcon:
+                                        const Icon(Icons.title_outlined),
                                     hintText: 'Contact Name',
                                   ),
                                 ),
                                 DefaultPhoneFormField(
-                                    controller: phoneController,
+                                  controller: phoneController,
                                   validator: (text) {
                                     if (text!.isEmpty) {
                                       return "Phone Number can't be empty";
@@ -116,16 +123,15 @@ class _HomeLayoutState extends State<HomeLayout> {
                                   labelText: 'Contact Phone Number',
                                   textColor: white,
                                   labelColor: lightBlue,
-                                  onChange: (countryCode){
-                                      myCountryCode = countryCode;
+                                  onChange: (countryCode) {
+                                    myCountryCode = countryCode;
                                   },
                                 ),
                               ],
                             ),
                           ),
                         ),
-                      ]
-                          ),
+                      ]),
                     )
                     .closed
                     .then(

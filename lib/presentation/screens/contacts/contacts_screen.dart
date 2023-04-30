@@ -1,4 +1,7 @@
+import 'package:easy_contacts/business_logic/app_cubit.dart';
+import 'package:easy_contacts/presentation/views/contacts_lists_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ContactsScreen extends StatefulWidget {
   const ContactsScreen({Key? key}) : super(key: key);
@@ -8,8 +11,26 @@ class ContactsScreen extends StatefulWidget {
 }
 
 class _ContactsScreenState extends State<ContactsScreen> {
+  late List<Map> contactsList;
+
+  @override
+  void didChangeDependencies() {
+    contactsList = AppCubit
+        .get(context)
+        .contacts;
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, state) {
+        return ContactsListsBuilder(
+          contacts: contactsList,
+          noContactsText: 'No Inserted Contacts Yet..',
+          contactType: 'all',
+        );
+      },
+    );
   }
 }

@@ -80,7 +80,7 @@ class AppCubit extends Cubit<AppState> {
     emit(AppGetContactsLoadingState());
 
     await database.rawQuery('SELECT * FROM contacts').then((value) {
-      for (var element in value) {
+      for (Map<String, Object?> element in value) {
         contacts.add(element);
 
         if (element['type'] == 'favorite') {
@@ -91,7 +91,7 @@ class AppCubit extends Cubit<AppState> {
     emit(AppGetContactsDoneState());
   }
 
-  Future<void> insertAccount({
+  Future<void> insertContact({
     required String name,
     required String phoneNumber,
   }) async {
@@ -110,4 +110,41 @@ class AppCubit extends Cubit<AppState> {
       }
     });
   }
+
+  void addOrRemoveFavorite({
+  required String type,
+  required int id,
+}) async{
+    await database.rawUpdate('UPDATE contacts SET type = ? WHERE id = ?',
+    [type, id]
+    ).then((value) {
+      getContacts(database);
+      emit(AppAddOrRemoveFavoriteState());
+    });
+  }
+
+  void editContact({
+    required String name,
+    required String phoneNumber,
+    required int id,
+  }) async{
+    await database.rawUpdate('UPDATE contacts SET name = ?, phoneNumber = ? WHERE id = ?',
+        [name, phoneNumber, id]
+    ).then((value) {
+      getContacts(database);
+      emit(AppEditContactState());
+    });
+  }
+
+  void deleteContact({
+    required int id,
+  }) async{
+    await database.rawDelete('DELETE FROM contacts WHERE id = ?',
+        [id]
+    ).then((value) {
+      getContacts(database);
+      emit(AppDeleteContactState());
+    });
+  }
+
 }
