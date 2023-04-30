@@ -40,11 +40,14 @@ class ContactsListsBuilder extends StatelessWidget {
           ],
         ),
       ),
-      child: ListView.separated(
-        itemBuilder: (context, index) =>
-            ContactsListItem(contactModel: contacts[index]),
-        separatorBuilder: (context, index) => const DefaultListsSeparator(),
-        itemCount: contacts.length,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 2.h),
+        child: ListView.separated(
+          itemBuilder: (context, index) =>
+              ContactsListItem(contactModel: contacts[index]),
+          separatorBuilder: (context, index) => const DefaultListsSeparator(),
+          itemCount: contacts.length,
+        ),
       ),
     );
   }

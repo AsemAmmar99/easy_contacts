@@ -53,21 +53,27 @@ class _HomeLayoutState extends State<HomeLayout> {
               textSize: 20.sp,
             ),
           ),
-          body: BlocBuilder<AppCubit, AppState>(
-            builder: (context, state) {
-              return Stack(children: [
-                Container(
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                    begin: AlignmentDirectional.topStart,
-                    end: AlignmentDirectional.bottomEnd,
-                    colors: [skyBlue, lightSkyBlue, skyBlue],
-                  )),
-                ),
-                cubit.screens[cubit.currentIndex],
-              ]);
-            },
-          ),
+          body: Stack(children: [
+            Container(
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                begin: AlignmentDirectional.topStart,
+                end: AlignmentDirectional.bottomEnd,
+                colors: [skyBlue, lightSkyBlue, skyBlue],
+              )),
+            ),
+            BlocBuilder<AppCubit, AppState>(
+              builder: (BuildContext context, state) {
+                if (state is AppGetContactsLoadingState) {
+                  return const Center(
+                    child: CircularProgressIndicator(color: darkBlue),
+                  );
+                } else {
+                  return cubit.screens[cubit.currentIndex];
+                }
+              },
+            ),
+          ]),
           floatingActionButton: FloatingActionButton(
             onPressed: () async {
               if (cubit.isBottomSheetShown) {

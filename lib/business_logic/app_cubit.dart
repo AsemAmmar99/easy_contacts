@@ -74,10 +74,12 @@ class AppCubit extends Cubit<AppState> {
   }
 
   void getContacts(Database database) async {
+
+    emit(AppGetContactsLoadingState());
+
     contacts.clear();
     favorites.clear();
 
-    emit(AppGetContactsLoadingState());
 
     await database.rawQuery('SELECT * FROM contacts').then((value) {
       for (Map<String, Object?> element in value) {
@@ -123,7 +125,7 @@ class AppCubit extends Cubit<AppState> {
     });
   }
 
-  void editContact({
+  Future<void> editContact({
     required String name,
     required String phoneNumber,
     required int id,
@@ -136,7 +138,7 @@ class AppCubit extends Cubit<AppState> {
     });
   }
 
-  void deleteContact({
+  Future<void> deleteContact({
     required int id,
   }) async{
     await database.rawDelete('DELETE FROM contacts WHERE id = ?',
