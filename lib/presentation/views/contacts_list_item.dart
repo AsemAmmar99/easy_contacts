@@ -2,6 +2,7 @@ import 'package:easy_contacts/business_logic/app_cubit.dart';
 import 'package:easy_contacts/presentation/styles/colors.dart';
 import 'package:easy_contacts/presentation/views/edit_contact_dialog.dart';
 import 'package:easy_contacts/presentation/widgets/default_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sizer/sizer.dart';
@@ -16,8 +17,11 @@ class ContactsListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: Key(contactModel['id'].toString()),
+      key: Key('${contactModel['id']}'),
       onDismissed: (direction) async {
+        if (kDebugMode) {
+          print('direction ${direction.name}');
+        }
         await AppCubit.get(context).deleteContact(id: contactModel['id']);
         Fluttertoast.showToast(
             msg: "Contact Deleted Successfully!",
@@ -29,6 +33,16 @@ class ContactsListItem extends StatelessWidget {
             fontSize: 14.sp);
       },
       child: InkWell(
+        onTap: (){
+      Fluttertoast.showToast(
+          msg: "Long touch for contact editing, Swipe left or right to delete, and double touch for calling Contact.",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 3,
+          backgroundColor: darkBlue,
+          textColor: white,
+          fontSize: 14.sp);
+        },
         onLongPress: () {
           showDialog(
             barrierDismissible: false,
@@ -66,9 +80,9 @@ class ContactsListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.only(start: 2.w),
-                    child: Flexible(
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.only(start: 2.w),
                       child: DefaultText(
                         text: contactModel['name'],
                         textSize: 14.sp,

@@ -27,7 +27,7 @@ class _EditContactDialogState extends State<EditContactDialog> {
       TextEditingController(text: widget.contactModel['name']);
 
   late TextEditingController phoneController = TextEditingController(
-      text: widget.contactModel['phoneNumber'].toString().substring(3));
+      text: '${widget.contactModel['phoneNumber']}'.substring(3));
 
   CountryCode myCountryCode = CountryCode(name: 'EG', dialCode: '+20');
 
