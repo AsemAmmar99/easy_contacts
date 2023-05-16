@@ -17,7 +17,7 @@ class ContactsListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: Key('${contactModel['id']}'),
+      key: UniqueKey(),
       onDismissed: (direction) async {
         if (kDebugMode) {
           print('direction ${direction.name}');

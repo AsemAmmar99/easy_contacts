@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1070722930675-om98hqmsraem2ree1i2ggfgp5gvael8q.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1070722930675-om98hqmsraem2ree1i2ggfgp5gvael8q</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1070722930675-0lr2fgegi1etcmeoevhudsclp7iq5akt.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBVeRf__zEv5a5KUMsb-Wdz1FFin-2h5qs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1070722930675</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.amit.easyContacts</string>
+	<key>PROJECT_ID</key>
+	<string>easy-contacts-f3fcd</string>
+	<key>STORAGE_BUCKET</key>
+	<string>easy-contacts-f3fcd.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1070722930675:ios:3be3c0bcd335b024f52486</string>
+</dict>
+</plist>

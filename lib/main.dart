@@ -1,12 +1,15 @@
 import 'package:easy_contacts/business_logic/app_cubit.dart';
 import 'package:easy_contacts/core/my_bloc_observer.dart';
 import 'package:easy_contacts/presentation/router/app_router.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

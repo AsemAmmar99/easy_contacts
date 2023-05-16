@@ -14,6 +14,14 @@ class AppGetContactsLoadingState extends AppState {}
 
 class AppGetContactsDoneState extends AppState {}
 
+class AppGetContactsErrorState extends AppState {}
+
+class AppGetFavoritesLoadingState extends AppState {}
+
+class AppGetFavoritesDoneState extends AppState {}
+
+class AppGetFavoritesErrorState extends AppState {}
+
 class AppInsertContactsDoneState extends AppState {}
 
 class AppAddOrRemoveFavoriteState extends AppState {}

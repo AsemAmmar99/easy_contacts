@@ -64,11 +64,32 @@ class _HomeLayoutState extends State<HomeLayout> {
             ),
             BlocBuilder<AppCubit, AppState>(
               builder: (BuildContext context, state) {
-                if (state is AppGetContactsLoadingState) {
+                if (state is AppGetContactsLoadingState ||
+                    state is AppGetFavoritesLoadingState) {
                   return const Center(
                     child: CircularProgressIndicator(color: darkBlue),
                   );
-                } else {
+                } else if(state is AppGetContactsErrorState ||
+                          state is AppGetFavoritesErrorState){
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.error,
+                          color: Colors.red,
+                          size: 75.sp,
+                        ),
+                        DefaultText(
+                          text: 'Error Occurred!',
+                          textColor: white,
+                          textSize: 25.sp,
+                          weight: FontWeight.bold,
+                        ),
+                      ],
+                    ),
+                  );
+                }else {
                   return cubit.screens[cubit.currentIndex];
                 }
               },

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1070722930675",
+    "project_id": "easy-contacts-f3fcd",
+    "storage_bucket": "easy-contacts-f3fcd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070722930675:android:22b8eb4b77a15720f52486",
+        "android_client_info": {
+          "package_name": "com.amit.easy_contacts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070722930675-0lr2fgegi1etcmeoevhudsclp7iq5akt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amit.easy_contacts",
+            "certificate_hash": "de8f932544736970edfa32b365586c2b24e5e6b2"
+          }
+        },
+        {
+          "client_id": "1070722930675-a99tsnk8da5qede4su5a65m64ruu2io2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkBKqhNaBfcBuPWQkW3d8XhhsTtuBfZOs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070722930675-a99tsnk8da5qede4su5a65m64ruu2io2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
